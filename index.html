@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ПП-21 Гнатецький Лабораторна робота 12.6</title>
+</head>	 
+<body>
+<script> 
+"use strict";
+
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 100) + 1;
+}
+
+function playGame() {
+    let guess = generateRandomNumber();
+    let f = true;
+    let attempts = 0;
+    let maxAttempts = 10;
+    let answer = confirm("Зіграємо у гру 'Вгадай число'? Ти маєш" maxAttempts " спроб!");
+
+    if (answer) {
+        while (f && attempts < maxAttempts) {
+            let number = parseInt(prompt("Введіть число від 1 до 100"));
+            attempts++;
+
+            if (isNaN(number) || number < 1 || number > 100) {
+                alert("Будь ласка, введіть коректне число від 1 до 100.");
+                continue;
+            }
+
+            if (number === guess) {
+                alert("Ви вгадали! Загадане число: " + guess + "\nКількість спроб: " + attempts);
+                f = false;
+            } else if (number > guess) {
+                alert("Загадане число менше, спробуйте ще раз. Спроба " + attempts + " з " + maxAttempts);
+            } else {
+                alert("Загадане число більше, спробуйте ще раз. Спроба " + attempts + " з " + maxAttempts);
+            }
+        }
+
+        if (attempts === maxAttempts && f) {
+            alert("Ви не вгадали! Спроби закінчилися. Загадане число було: " + guess);
+        }
+
+        let playAgain = confirm("Хочете зіграти ще раз?");
+        if (playAgain) {
+            playGame();
+        } else {
+            alert("Дякуємо за гру! До зустрічі.");
+        }
+    } else {
+        alert("Шкода. Може бути в інший раз?");
+    }
+}
+
+playGame();
+
+</script>
+</body>
+</html>
+
